@@ -1,2 +1,2 @@
 # Enrollment
-Mad e
+Made for a course.
