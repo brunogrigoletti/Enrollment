@@ -20,7 +20,7 @@ public class StudentRetrieveController {
 		return StudentRegistration.getInstance().getStudentById(regNum);
 	}
 
-	@GetMapping("/student/studentbyid/{namePart}")
+	@GetMapping("/student/studentbynamepart/{namePart}")
 	public List<Student> getStudentByNamePart(@PathVariable("namePart") String namePart) {
 		return StudentRegistration.getInstance().getStudentByNamePart(namePart);
 	}

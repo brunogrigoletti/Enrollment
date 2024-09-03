@@ -3,7 +3,6 @@ package br.pucrs.engswii.beans;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class StudentRegistration {
 	private List<Student> studentRecords;
@@ -68,8 +67,12 @@ public class StudentRegistration {
 	}
 
 	public List<Student> getStudentByNamePart(String namePart) {
-		return studentRecords.stream()
-                .filter(s -> s.getName().contains(namePart))
-                .collect(Collectors.toList());
+		List<Student> matchingStudents = new ArrayList<>();
+		for (Student s : studentRecords) {
+			if (s.getName().toLowerCase().contains(namePart)) {
+				matchingStudents.add(s);
+			}
+		}
+		return matchingStudents;
 	}
 }

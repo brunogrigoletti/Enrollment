@@ -17,6 +17,7 @@ public class SubjectManager {
         this.subCodes = new ArrayList<>();
         this.stdCodes = new ArrayList<>();
         this.subjects = new ArrayList<>();
+        this.students = new ArrayList<>();
         this.registrationStatus = null;
     }
 

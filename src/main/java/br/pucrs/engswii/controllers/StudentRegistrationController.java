@@ -1,5 +1,7 @@
 package br.pucrs.engswii.controllers;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,11 @@ public class StudentRegistrationController {
 	}
 
 	@PostMapping("/register/student/subject")
-	public String registerStudentSubject(@RequestBody Student student, @RequestBody Subject subject) {
+	public String registerStudentSubject(@RequestBody Map<String, String> request) {
+		String studentId = request.get("studentId");
+		String subjectId = request.get("subjectId");
+		Student student = StudentRegistration.getInstance().getStudentById(studentId);
+		Subject subject = SubjectManager.getInstance().getSubject(subjectId);
 		if (SubjectManager.getInstance().addStudent(student, subject))
 			return "Successful";
 		else
