@@ -25,8 +25,8 @@ public class SubjectController {
 		return SubjectManager.getInstance().getAllSubjects();
 	}
 
-	@GetMapping("/student/subjects/{regNum}")
+	/* @GetMapping("/student/subjects/{regNum}")
 	public List<Student> getStudentsBySubject(@PathVariable("classCode") String classCode) {
 		return null;
-	}
+	} */
 }
