@@ -9,5 +9,4 @@ public class SpringRestControllerFullAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringRestControllerFullAppApplication.class, args);
 	}
-
 }
