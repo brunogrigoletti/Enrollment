@@ -1,6 +1,11 @@
 package br.pucrs.engswii.beans;
 
+import jakarta.persistence.*;
+
+/* @Entity
+@Table(name="Subjects") */
 public class Subject {
+    //@Id
     private String code;
     private String name;
     private String schedule;

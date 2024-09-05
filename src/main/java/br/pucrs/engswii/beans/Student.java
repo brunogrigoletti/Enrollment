@@ -1,11 +1,20 @@
 package br.pucrs.engswii.beans;
 
-public class Student {
+import jakarta.persistence.*;
 
+@Entity
+public class Student {
+	@Id
+    String rn;
     String name;
     String address;
-    String registrationNumber;
     
+	public Student(String rn, String name, String address) {
+		this.rn = rn;
+		this.name = name;
+		this.address = address;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -23,10 +32,15 @@ public class Student {
 	}
 
 	public String getRegistrationNumber() {
-		return registrationNumber;
+		return rn;
 	}
 	
 	public void setRegistrationNumber(String registrationNumber) {
-		this.registrationNumber = registrationNumber;
+		this.rn = rn;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", address=" + address + ", registrationNumber=" + rn + "]";
 	}
 }

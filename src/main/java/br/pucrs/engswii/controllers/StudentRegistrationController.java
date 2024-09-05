@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import br.pucrs.engswii.beans.*;
+import br.pucrs.engswii.persistance.students.StudentRegistration;
 
 @RestController
 public class StudentRegistrationController {
@@ -24,7 +25,7 @@ public class StudentRegistrationController {
 	public String registerStudentSubject(@RequestBody Map<String, String> request) {
 		String studentId = request.get("studentId");
 		String subjectId = request.get("subjectId");
-		Student student = StudentRegistration.getInstance().getStudentById(studentId);
+		Student student = StudentRegistration.getInstance().getStudentId(studentId);
 		Subject subject = SubjectManager.getInstance().getSubject(subjectId);
 		if (SubjectManager.getInstance().addStudent(student, subject))
 			return "Successful";

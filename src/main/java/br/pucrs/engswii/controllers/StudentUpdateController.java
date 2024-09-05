@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import br.pucrs.engswii.beans.Student;
-import br.pucrs.engswii.beans.StudentRegistration;
+import br.pucrs.engswii.persistance.students.StudentRegistration;
 
 @RestController
 public class StudentUpdateController {
