@@ -8,6 +8,9 @@ public class Student {
     String rn;
     String name;
     String address;
+
+	protected Student() {
+    }
     
 	public Student(String rn, String name, String address) {
 		this.rn = rn;
