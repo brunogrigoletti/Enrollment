@@ -1,7 +1,6 @@
 package br.pucrs.engswii.persistance.students;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +10,11 @@ import br.pucrs.engswii.beans.Student;
 
 @Repository
 @Primary
-public class StudentRegistration implements StudentRepository {
+public class StudentManager implements StudentRepository {
 	private static StudentJpaItfRep repository;
 
     @Autowired
-    public StudentRegistration(StudentJpaItfRep repository) {
+    public StudentManager(StudentJpaItfRep repository) {
         this.repository = repository;
     }
 
@@ -28,7 +27,7 @@ public class StudentRegistration implements StudentRepository {
 	}
 
 	@Override
-	public String upDateStudent(Student std) {
+	public String updateStudent(Student std) {
 		List<Student> stds = repository.findAll();
 		for(int i=0; i<stds.size(); i++)
 		{
@@ -59,7 +58,7 @@ public class StudentRegistration implements StudentRepository {
 	public List<Student> getStudents() {
 		List<Student> stds = repository.findAll();
         if (stds.size() == 0) {
-            return new LinkedList<Student>();
+            return new ArrayList<Student>();
         }
         else {
             return stds.stream().toList();

@@ -5,7 +5,7 @@ import br.pucrs.engswii.beans.Student;
 
 public interface StudentRepository {
     void add(Student std);
-    String upDateStudent(Student std);
+    String updateStudent(Student std);
     String deleteStudent(String registrationNumber);
     List<Student> getStudents();
     Student getStudentId(String id);

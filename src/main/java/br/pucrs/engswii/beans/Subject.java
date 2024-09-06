@@ -2,20 +2,22 @@ package br.pucrs.engswii.beans;
 
 import jakarta.persistence.*;
 
-/* @Entity
-@Table(name="Subjects") */
+@Entity
 public class Subject {
-    //@Id
+    @Id
     private String code;
     private String name;
     private String schedule;
-    private String classCode;
+    private String course;
 
-    public Subject(String code, String name, String schedule, String classCode) {
+    protected Subject() {
+    }
+    
+    public Subject(String code, String name, String schedule, String course) {
         this.code = code;
         this.name = name;
         this.schedule = schedule;
-        this.classCode = classCode;
+        this.course = course;
     }
 
     public String getCode() {
@@ -42,16 +44,16 @@ public class Subject {
         this.schedule = schedule;
     }
 
-    public String getClassCode() {
-        return classCode;
+    public String getCourse() {
+        return course;
     }
 
-    public void setClassCode(String classCode) {
-        this.classCode = classCode;
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     @Override
     public String toString() {
-        return "Subject [code=" + code + ", name=" + name + ", schedule=" + schedule + ", classCode=" + classCode + "]";
+        return "Subject [code=" + code + ", name=" + name + ", schedule=" + schedule + ", classCode=" + course + "]";
     }
 }

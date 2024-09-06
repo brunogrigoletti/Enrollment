@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.pucrs.engswii.beans.Student;
 import br.pucrs.engswii.beans.StudentRegistrationReply;
 import br.pucrs.engswii.beans.Subject;
-import br.pucrs.engswii.beans.SubjectManager;
-import br.pucrs.engswii.persistance.students.StudentRegistration;
+import br.pucrs.engswii.persistance.students.StudentManager;
+import br.pucrs.engswii.persistance.subjects.SubjectManager;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/student")
 public class StudentController {
-	private StudentRegistration stds;
+	private StudentManager stds;
+	private SubjectManager sm;
 
 	@Autowired
-    public StudentController(StudentRegistration stds) {
+    public StudentController(StudentManager stds, SubjectManager sm) {
         this.stds=stds;
+		this.sm=sm;
     }
 
 	@GetMapping("/allstudent")
@@ -44,12 +46,12 @@ public class StudentController {
 
 	@GetMapping("/subjects/{regNum}")
 	public String getSubjectByStudent(@PathVariable("regNum") String regNum) {
-		return SubjectManager.getInstance().getSubjectClassByStudent(stds.getStudentId(regNum));
+		return sm.getSubjectClassStudent(stds.getStudentId(regNum));
 	}
 
 	@PutMapping("/update")
 	public String updateStudentRecord(@RequestBody Student stdn) {
-		return stds.upDateStudent(stdn);
+		return stds.updateStudent(stdn);
 	}
 	
 	@PostMapping("/register")
@@ -68,8 +70,8 @@ public class StudentController {
 		String studentId = request.get("studentId");
 		String subjectId = request.get("subjectId");
 		Student student = stds.getStudentId(studentId);
-		Subject subject = SubjectManager.getInstance().getSubject(subjectId);
-		if (SubjectManager.getInstance().addStudent(student, subject))
+		Subject subject = sm.getSubjectId(subjectId);
+		if (sm.addStudent(student, subject))
 			return "Successful";
 		else
 			return "Unsuccessful";
