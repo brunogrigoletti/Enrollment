@@ -1,6 +1,7 @@
 package br.pucrs.engswii.persistance.students;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,44 +12,29 @@ import br.pucrs.engswii.beans.Student;
 @Repository
 @Primary
 public class StudentRegistration implements StudentRepository {
-	private List<Student> studentRecords;
-	private static StudentRegistration stdregd = null;
-	private StudentJpaItfRep repository;
+	private static StudentJpaItfRep repository;
 
     @Autowired
     public StudentRegistration(StudentJpaItfRep repository) {
         this.repository = repository;
     }
 
-	private StudentRegistration(){
-		studentRecords = new ArrayList<Student>();
-	}
-
-	public static StudentRegistration getInstance() {
-		if(stdregd == null) {
-			stdregd = new StudentRegistration();
-			return stdregd;
-		}
-		else {
-			return stdregd;
-		}
-	}
-
 	@Override
 	public void add(Student std) {
 		Random random = new Random();
         int regNum = 10000 + random.nextInt(90000);
 		std.setRegistrationNumber(String.valueOf(regNum));
-		studentRecords.add(std);
+		repository.save(std);
 	}
 
 	@Override
 	public String upDateStudent(Student std) {
-		for(int i=0; i<studentRecords.size(); i++)
+		List<Student> stds = repository.findAll();
+		for(int i=0; i<stds.size(); i++)
 		{
-			Student stdn = studentRecords.get(i);
+			Student stdn = stds.get(i);
 			if(stdn.getRegistrationNumber().equals(std.getRegistrationNumber())) {
-				studentRecords.set(i, std);
+				stds.set(i, std);
 				return "Update successful";
 			}
 		}
@@ -57,11 +43,12 @@ public class StudentRegistration implements StudentRepository {
 
 	@Override
 	public String deleteStudent(String registrationNumber) {
-		for(int i=0; i<studentRecords.size(); i++)
+		List<Student> stds = repository.findAll();
+		for(int i=0; i<stds.size(); i++)
 		{
-			Student stdn = studentRecords.get(i);
+			Student stdn = stds.get(i);
 			if(stdn.getRegistrationNumber().equals(registrationNumber)){
-				studentRecords.remove(i);
+				stds.remove(i);
 				return "Delete successful";
 			}
 		}
@@ -70,12 +57,19 @@ public class StudentRegistration implements StudentRepository {
 
 	@Override
 	public List<Student> getStudents() {
-		return studentRecords;
+		List<Student> stds = repository.findAll();
+        if (stds.size() == 0) {
+            return new LinkedList<Student>();
+        }
+        else {
+            return stds.stream().toList();
+        }
 	}
 
 	@Override
 	public Student getStudentId(String regNum) {
-		for (Student s : studentRecords) {
+		List<Student> stds = repository.findAll();
+		for (Student s : stds) {
 			if (s.getRegistrationNumber().equalsIgnoreCase(regNum)) {
 				return s;
 			}
@@ -85,8 +79,9 @@ public class StudentRegistration implements StudentRepository {
 
 	@Override
 	public List<Student> getStudentNamePart(String namePart) {
+		List<Student> stds = repository.findAll();
 		List<Student> matchingStudents = new ArrayList<>();
-		for (Student s : studentRecords) {
+		for (Student s : stds) {
 			if (s.getName().toLowerCase().contains(namePart)) {
 				matchingStudents.add(s);
 			}
