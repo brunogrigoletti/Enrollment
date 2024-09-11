@@ -1,9 +1,10 @@
 package br.pucrs.engswii.beans;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Student {
+public class Student implements Serializable {
 	@Id
     String rn;
     String name;

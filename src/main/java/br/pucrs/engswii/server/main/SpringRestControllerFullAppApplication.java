@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages="br.pucrs.engswii")
-@EntityScan(basePackages="br.pucrs.engswii")
+@EnableJpaRepositories(basePackages={"br.pucrs.engswii"})
+@EntityScan(basePackages={"br.pucrs.engswii"})
 public class SpringRestControllerFullAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringRestControllerFullAppApplication.class, args);
