@@ -2,7 +2,6 @@ package br.pucrs.engswii.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import br.pucrs.engswii.beans.Student;
-import br.pucrs.engswii.beans.StudentRegistrationReply;
 import br.pucrs.engswii.beans.Subject;
 import br.pucrs.engswii.persistance.students.StudentManager;
 import br.pucrs.engswii.persistance.subjects.SubjectManager;
@@ -55,14 +54,11 @@ public class StudentController {
 	}
 	
 	@PostMapping("/register")
-	public StudentRegistrationReply registerStudent(@RequestBody Student student) {
-		StudentRegistrationReply stdregreply = new StudentRegistrationReply();           
-		stds.add(student);
-		stdregreply.setName(student.getName());
-		stdregreply.setAddress(student.getAddress());
-		stdregreply.setRegistrationNumber(student.getRegistrationNumber());
-		stdregreply.setRegistrationStatus("Successful");
-		return stdregreply;
+	public String registerStudent(@RequestBody Student student) {
+		if (stds.add(student))
+			return "Successful";
+		else
+			return "Unsuccessful";
 	}
 
 	@PostMapping("/register/subject")

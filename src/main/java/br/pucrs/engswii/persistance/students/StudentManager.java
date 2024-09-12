@@ -4,26 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import br.pucrs.engswii.beans.Student;
 
-@Repository
-@Primary
+@Service
 public class StudentManager implements StudentRepository {
-	private static StudentJpaItfRep repository;
+	private StudentJpaItfRep repository;
+	private List<String> stdCodes;
 
     @Autowired
     public StudentManager(StudentJpaItfRep repository) {
         this.repository = repository;
+		this.stdCodes = new ArrayList<>();
     }
 
 	@Override
-	public void add(Student std) {
+	public boolean add(Student std) {
+		if (stdCodes.contains(std.getRn())) {
+            return false;
+        }
 		Random random = new Random();
         int regNum = 10000 + random.nextInt(90000);
-		std.setRegistrationNumber(String.valueOf(regNum));
+		String rn = String.valueOf(regNum);
+		std.setRn(rn);
+		stdCodes.add(rn);
 		repository.save(std);
+		return true;
 	}
 
 	@Override
@@ -32,7 +38,7 @@ public class StudentManager implements StudentRepository {
 		for(int i=0; i<stds.size(); i++)
 		{
 			Student stdn = stds.get(i);
-			if(stdn.getRegistrationNumber().equals(std.getRegistrationNumber())) {
+			if(stdn.getRn().equals(std.getRn())) {
 				stds.set(i, std);
 				return "Update successful";
 			}
@@ -46,7 +52,7 @@ public class StudentManager implements StudentRepository {
 		for(int i=0; i<stds.size(); i++)
 		{
 			Student stdn = stds.get(i);
-			if(stdn.getRegistrationNumber().equals(registrationNumber)){
+			if(stdn.getRn().equals(registrationNumber)){
 				stds.remove(i);
 				return "Delete successful";
 			}
@@ -69,7 +75,7 @@ public class StudentManager implements StudentRepository {
 	public Student getStudentId(String regNum) {
 		List<Student> stds = repository.findAll();
 		for (Student s : stds) {
-			if (s.getRegistrationNumber().equalsIgnoreCase(regNum)) {
+			if (s.getRn().equalsIgnoreCase(regNum)) {
 				return s;
 			}
 		}

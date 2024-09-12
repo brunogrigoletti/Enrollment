@@ -6,9 +6,9 @@ import java.io.Serializable;
 @Entity
 public class Student implements Serializable {
 	@Id
-    String rn;
-    String name;
-    String address;
+    private String rn;
+    private String name;
+    private String address;
 
 	protected Student() {
     }
@@ -35,11 +35,11 @@ public class Student implements Serializable {
 		this.address = address;
 	}
 
-	public String getRegistrationNumber() {
+	public String getRn() {
 		return rn;
 	}
 	
-	public void setRegistrationNumber(String registrationNumber) {
+	public void setRn(String rn) {
 		this.rn = rn;
 	}
 

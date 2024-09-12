@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import br.pucrs.engswii.beans.Student;
 import br.pucrs.engswii.beans.Subject;
 
+@Service 
 public class SubjectManager implements SubjectRepository {
-    private static SubjectJpaItfRep repository;
+    private SubjectJpaItfRep repository;
     private List<String> subCodes;
     private List<Subject> subjects;
     private List<String> stdCodes;
@@ -38,13 +40,13 @@ public class SubjectManager implements SubjectRepository {
 
     @Override
     public boolean addStudent(Student std, Subject sub) {
-        if (stdCodes.contains(std.getRegistrationNumber())) {
+        if (stdCodes.contains(std.getRn())) {
             return false;
         }
         Map<Student, String> studentMap = new HashMap<>();
         studentMap.put(std, sub.getCourse());
         students.add(studentMap);
-        stdCodes.add(std.getRegistrationNumber());
+        stdCodes.add(std.getRn());
         return true;
     }
 
