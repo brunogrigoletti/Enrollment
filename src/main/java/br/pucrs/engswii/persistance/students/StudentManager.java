@@ -6,6 +6,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.pucrs.engswii.beans.Student;
+import br.pucrs.engswii.beans.Subject;
 
 @Service
 public class StudentManager implements StudentRepository {
@@ -92,5 +93,16 @@ public class StudentManager implements StudentRepository {
 			}
 		}
 		return matchingStudents;
+	}
+
+	@Override
+	public List<Subject> getSubjectsByStudent(String regNum) {
+		List<Student> stds = repository.findAll();
+		for (Student s : stds) {
+			if (s.getRn().equalsIgnoreCase(regNum)) {
+				return s.getSubjects();
+			}
+		}
+		return null;
 	}
 }

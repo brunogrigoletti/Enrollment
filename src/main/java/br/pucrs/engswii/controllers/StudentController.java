@@ -44,8 +44,8 @@ public class StudentController {
 	}
 
 	@GetMapping("/subjects/{regNum}")
-	public String getSubjectByStudent(@PathVariable("regNum") String regNum) {
-		return sm.getSubjectClassStudent(stds.getStudentId(regNum));
+	public List<Subject> getSubjectByStudent(@PathVariable("regNum") String regNum) {
+		return stds.getSubjectsByStudent(regNum);
 	}
 
 	@PutMapping("/update")

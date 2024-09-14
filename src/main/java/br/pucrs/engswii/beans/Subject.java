@@ -2,6 +2,9 @@ package br.pucrs.engswii.beans;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Subject implements Serializable {
     @Id
@@ -9,6 +12,8 @@ public class Subject implements Serializable {
     private String name;
     private String schedule;
     private String course;
+    @ManyToMany
+    private List<Student> students;
 
     protected Subject() {
     }
@@ -18,6 +23,7 @@ public class Subject implements Serializable {
         this.name = name;
         this.schedule = schedule;
         this.course = course;
+        this.students = new ArrayList<>();
     }
 
     public String getCode() {
@@ -52,8 +58,17 @@ public class Subject implements Serializable {
         this.course = course;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     @Override
     public String toString() {
-        return "Subject [code=" + code + ", name=" + name + ", schedule=" + schedule + ", classCode=" + course + "]";
+        return "Subject [code=" + code + ", name=" + name + ", schedule=" + schedule + ", course=" + course
+                + ", students=" + students + "]";
     }
 }

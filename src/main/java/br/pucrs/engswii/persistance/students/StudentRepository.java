@@ -2,6 +2,8 @@ package br.pucrs.engswii.persistance.students;
 
 import java.util.List;
 import br.pucrs.engswii.beans.Student;
+import br.pucrs.engswii.beans.Subject;
+
 public interface StudentRepository {
     boolean add(Student std);
     String updateStudent(Student std);
@@ -9,4 +11,5 @@ public interface StudentRepository {
     List<Student> getStudents();
     Student getStudentId(String id);
     List<Student> getStudentNamePart(String namePart);
+    List<Subject> getSubjectsByStudent(String regNum);
 }

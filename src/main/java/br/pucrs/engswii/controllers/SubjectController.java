@@ -36,7 +36,7 @@ public class SubjectController {
 	}
 
 	@GetMapping("/student/{classCode}")
-	public List<Student> getStudentsByClass(@PathVariable("classCode") String course) {
-		return sm.getStudentsByClass(course);
+	public List<Student> getStudentsByClass(@PathVariable("classCode") String code) {
+		return sm.getStudentsByClass(code);
 	}
 }
