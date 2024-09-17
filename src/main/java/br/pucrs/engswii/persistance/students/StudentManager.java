@@ -34,6 +34,17 @@ public class StudentManager implements StudentRepository {
 	}
 
 	@Override
+    public boolean addSubject(Student std, Subject sub) {
+		if (!sub.getStudents().contains(std) && !std.getSubjects().contains(sub)) {
+			std.getSubjects().add(sub);
+			sub.getStudents().add(std);
+			repository.save(std);
+			return true;
+		}
+		return false;
+    }
+
+	@Override
 	public String updateStudent(Student std) {
 		List<Student> stds = repository.findAll();
 		for(int i=0; i<stds.size(); i++)

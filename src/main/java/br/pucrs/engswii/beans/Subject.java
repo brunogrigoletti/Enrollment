@@ -59,7 +59,11 @@ public class Subject implements Serializable {
     }
 
     public List<Student> getStudents() {
-        return students;
+        List<Student> list = new ArrayList<>();
+		for (Student s : students) {
+			list.add(s);
+		}
+		return list;
     }
 
     public void setStudents(List<Student> students) {

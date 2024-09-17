@@ -11,7 +11,7 @@ public class Student implements Serializable {
     private String rn;
     private String name;
     private String address;
-	@ManyToMany
+	@ManyToMany (mappedBy="students")
 	private List<Subject> subjects;
 
 	protected Student() {
@@ -49,7 +49,11 @@ public class Student implements Serializable {
 	}
 
 	public List<Subject> getSubjects() {
-		return subjects;
+		List<Subject> list = new ArrayList<>();
+		for (Subject s : subjects) {
+			list.add(s);
+		}
+		return list;
 	}
 
 	public void setSubjects(List<Subject> subjects) {
