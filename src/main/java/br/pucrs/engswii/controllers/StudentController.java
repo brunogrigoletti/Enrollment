@@ -67,7 +67,7 @@ public class StudentController {
 		String subjectId = request.get("subjectId");
 		Student student = stds.getStudentId(studentId);
 		Subject subject = sm.getSubjectId(subjectId);
-		if (stds.addSubject(student, subject))
+		if (sm.addStudent(student, subject))
 			return "Successful";
 		else
 			return "Unsuccessful";

@@ -30,6 +30,16 @@ public class SubjectManager implements SubjectRepository {
     }
 
     @Override
+    public boolean addStudent(Student std, Subject sub) {
+		if (!sub.getStudents().contains(std) && !std.getSubjects().contains(sub)) {
+			sub.getStudents().add(std);
+			repository.save(sub);
+			return true;
+		}
+		return false;
+    }
+
+    @Override
     public Subject getSubjectId(String code) {
         List<Subject> subj = repository.findAll();
         for (Subject subject : subj) {

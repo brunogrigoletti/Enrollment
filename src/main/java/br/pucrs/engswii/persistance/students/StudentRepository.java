@@ -6,7 +6,6 @@ import br.pucrs.engswii.beans.Subject;
 
 public interface StudentRepository {
     boolean add(Student std);
-    boolean addSubject(Student std, Subject sub);
     String updateStudent(Student std);
     String deleteStudent(String registrationNumber);
     List<Student> getStudents();
