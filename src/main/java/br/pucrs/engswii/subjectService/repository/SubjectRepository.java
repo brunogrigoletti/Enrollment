@@ -1,8 +1,9 @@
-package br.pucrs.engswii.persistance.subjects;
+package br.pucrs.engswii.subjectService.repository;
 
 import java.util.List;
-import br.pucrs.engswii.beans.Student;
-import br.pucrs.engswii.beans.Subject;
+
+import br.pucrs.engswii.studentService.entity.Student;
+import br.pucrs.engswii.subjectService.entity.Subject;
 
 public interface SubjectRepository {
     boolean add(String code, String name, String schedule, String classCode);

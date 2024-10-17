@@ -1,11 +1,12 @@
-package br.pucrs.engswii.persistance.subjects;
+package br.pucrs.engswii.subjectService.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.pucrs.engswii.beans.Student;
-import br.pucrs.engswii.beans.Subject;
+
+import br.pucrs.engswii.studentService.entity.Student;
+import br.pucrs.engswii.subjectService.entity.Subject;
 
 @Service 
 public class SubjectManager implements SubjectRepository {

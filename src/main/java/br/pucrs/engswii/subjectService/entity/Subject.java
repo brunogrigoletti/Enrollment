@@ -1,4 +1,4 @@
-package br.pucrs.engswii.beans;
+package br.pucrs.engswii.subjectService.entity;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import br.pucrs.engswii.studentService.entity.Student;
 
 @Entity
 public class Subject implements Serializable {

@@ -1,4 +1,4 @@
-package br.pucrs.engswii.controllers;
+package br.pucrs.engswii.subjectService.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.pucrs.engswii.beans.Student;
-import br.pucrs.engswii.beans.Subject;
-import br.pucrs.engswii.persistance.subjects.SubjectManager;
+
+import br.pucrs.engswii.studentService.entity.Student;
+import br.pucrs.engswii.subjectService.entity.Subject;
+import br.pucrs.engswii.subjectService.repository.SubjectManager;
 
 @RestController
 @RequestMapping("/subject")

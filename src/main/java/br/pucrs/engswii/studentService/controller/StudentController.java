@@ -1,10 +1,12 @@
-package br.pucrs.engswii.controllers;
+package br.pucrs.engswii.studentService.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import br.pucrs.engswii.beans.Student;
-import br.pucrs.engswii.beans.Subject;
-import br.pucrs.engswii.persistance.students.StudentManager;
-import br.pucrs.engswii.persistance.subjects.SubjectManager;
+
+import br.pucrs.engswii.studentService.entity.Student;
+import br.pucrs.engswii.studentService.repository.StudentManager;
+import br.pucrs.engswii.subjectService.entity.Subject;
+import br.pucrs.engswii.subjectService.repository.SubjectManager;
+
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
